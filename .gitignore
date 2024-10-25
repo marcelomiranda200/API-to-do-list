@@ -1,0 +1,61 @@
+# Arquivos de ajuda
+HELP.md
+
+# Diretórios de compilação
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Configurações do Spring Tool Suite (STS)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Visual Studio Code
+.vscode/
+
+# Logs de aplicação
+*.log
+*.log.*
+
+# Configurações locais e variáveis de ambiente
+*.env
+*.properties
+
+# Arquivos de credenciais e chaves
+**/application-*.properties
+**/application-*.yml
+secret-key.txt
+
+# Dependências do Gradle
+.gradle/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+*.swp
