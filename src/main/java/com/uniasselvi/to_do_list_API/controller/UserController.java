@@ -1,7 +1,8 @@
-package br.com.uniasselvi.to_do_list.controller;
+package com.uniasselvi.to_do_list_API.controller;
 
-import br.com.uniasselvi.to_do_list.model.User;
-import br.com.uniasselvi.to_do_list.repository.InterfaceUserRepository;
+import com.uniasselvi.to_do_list_API.model.User;
+import com.uniasselvi.to_do_list_API.repository.InterfaceUserRepository;
+import com.uniasselvi.to_do_list_API.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private InterfaceUserRepository userRepository;
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<Iterable<User>> getAllUsers() {

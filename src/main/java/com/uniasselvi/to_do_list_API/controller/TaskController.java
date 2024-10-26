@@ -2,6 +2,7 @@ package br.com.uniasselvi.to_do_list.controller;
 
 import br.com.uniasselvi.to_do_list.model.Task;
 import br.com.uniasselvi.to_do_list.repository.InterfaceTaskRepository;
+import com.uniasselvi.to_do_list_API.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class TaskController {
 
     @Autowired
-    private InterfaceTaskRepository taskRepository;
+    private TaskService taskService;
 
     @GetMapping
     public ResponseEntity<Iterable<Task>> getAllTasks() {
