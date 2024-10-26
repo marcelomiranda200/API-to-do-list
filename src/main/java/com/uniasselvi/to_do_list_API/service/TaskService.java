@@ -52,6 +52,12 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public Optional<Task> getTaskById(Long taskId) {
+        return taskRepository.findById(taskId);
+    }
+
+
+
     public List<Task> getAllTasksByUserId(Long userId) {
         return taskRepository.findByUserId(userId);
     }

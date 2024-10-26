@@ -10,26 +10,7 @@ import com.uniasselvi.to_do_list_API.model.TaskStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import java.util.Optional;
 
 
 /**
@@ -41,6 +22,8 @@ import java.util.List;
 public interface InterfaceTaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByStatus(TaskStatus status);
+
+    Optional<Task> findById(Long taskId);
 
     List<Task> findByUserId(Long userId);
 

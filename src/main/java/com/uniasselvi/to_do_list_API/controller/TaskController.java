@@ -43,6 +43,7 @@ import java.util.Optional;
 
  Métodos:
  - `getAllTasks`: Retorna todas as tarefas cadastradas (HTTP 200).
+ -  getTaskById: Retorna as tarefas pelos IDs delas.
  - `getTaskById`: Retorna uma tarefa por ID ou 404 se não encontrada.
  -  getAllTasksByUserId: Retorna todas as tarefas por id de um unico usuário.
  - `createTask`: Cria uma nova tarefa e retorna com status 201.
@@ -64,7 +65,7 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        Optional<Task> task = taskService.updateTask(id, null);
+        Optional<Task> task = taskService.getTaskById(id); // Corrigido método para usar camelCase
         return task.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
