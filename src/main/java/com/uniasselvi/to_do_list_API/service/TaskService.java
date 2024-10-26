@@ -1,66 +1,75 @@
-package com.uniasselvi.to_do_list_API.service;
-
-import com.uniasselvi.to_do_list_API.model.Task; // Importação do modelo Task
-import com.uniasselvi.to_do_list_API.repository.InterfaceTaskRepository; // Importação do repositório de tarefas
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List; // Importação para trabalhar com listas
-import java.util.Optional; // Importação para trabalhar com valores opcionais
-
 /**
  * Classe de serviço responsável pela lógica de negócios relacionada às tarefas.
  * Utiliza o InterfaceTaskRepository para realizar operações no banco de dados.
+ * * Das linhas 11 a 17 temos as importações:
+ *  * - Task: Modelo que representa as tarefas
+ *  * - InterfaceTaskRepository: Interface para operações de acesso a dados das tarefas
+ *  * - @Autowired: Facilita a injeção de dependência para que o Spring gerencie a instância do repositório.
+ *  * - @Service: Anotação que marca a classe como um serviço Spring, permitindo a injeção em outros componentes.
+ *  * - List e Optional: Estruturas de dados do Java utilizadas para gerenciar coleções e valores opcionais.
+ */
+package com.uniasselvi.to_do_list_API.service;
+import com.uniasselvi.to_do_list_API.model.Task;
+import com.uniasselvi.to_do_list_API.repository.InterfaceTaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Esta classe fornece métodos para operações CRUD (Criar, Ler, Atualizar e Deletar) relacionadas aos usuários.
+ * - das linhas 44 em diante, temos:
+ * - findAllTasks: Retorna todas as tarefas cadastradas.
+ * - getAllTasksByUserId: Retorna todas as tarefas por id de um unico usuário.
+ * - findAllByUserId: Busca todas as tarefas de um usuário específico.
+ * - createTask: Cria uma nova tarefa e retorna o objeto criado.
+ * - updateTask: Atualiza os dados de uma tarefa existente pelo ID e retorna a tarefa atualizada, se encontrada.
+ * - deleteTask: Deleta uma tarefa pelo ID especificado.
  */
 @Service
 public class TaskService {
 
     @Autowired
-    private InterfaceTaskRepository taskRepository; // Injeção de dependência do repositório de tarefas
+    private InterfaceTaskRepository taskRepository;
 
-    /**
-     * Método para buscar todas as tarefas de um usuário específico.
-     *
-     * @param userId O ID do usuário cujas tarefas devem ser buscadas.
-     * @return Uma lista de tarefas associadas ao usuário.
-     */
-    public List<Task> findAllByUserId(Long userId) {
-        return taskRepository.findByUserId(userId); // Retorna todas as tarefas do usuário
+
+    public List <Task> findAllTasks() {
+        return taskRepository.findAll();
     }
 
-    /**
-     * Método para criar uma nova tarefa.
-     *
-     * @param task O objeto Task a ser criado.
-     * @return A tarefa criada.
-     */
+    public List<Task> getAllTasksByUserId(Long userId) {
+        return taskRepository.findByUserId(userId);
+    }
+
     public Task createTask(Task task) {
-        return taskRepository.save(task); // Salva e retorna a nova tarefa
+        return taskRepository.save(task);
     }
 
-    /**
-     * Método para atualizar uma tarefa existente.
-     *
-     * @param id O ID da tarefa a ser atualizada.
-     * @param updatedTask O objeto Task com os novos dados.
-     * @return Um Optional contendo a tarefa atualizada, se encontrada.
-     */
     public Optional<Task> updateTask(Long id, Task updatedTask) {
-        // Verifica se a tarefa existe e atualiza seus dados
         return taskRepository.findById(id).map(task -> {
-            task.setTitle(updatedTask.getTitle()); // Atualiza o título da tarefa
-            task.setDescription(updatedTask.getDescription()); // Atualiza a descrição
-            task.setStatus(updatedTask.getStatus()); // Atualiza o status
-            return taskRepository.save(task); // Salva e retorna a tarefa atualizada
+            task.setTitle(updatedTask.getTitle());
+            task.setDescription(updatedTask.getDescription());
+            task.setStatus(updatedTask.getStatus());
+            return taskRepository.save(task);
         });
     }
 
-    /**
-     * Método para deletar uma tarefa pelo ID.
-     *
-     * @param id O ID da tarefa a ser deletada.
-     */
     public void deleteTask(Long id) {
-        taskRepository.deleteById(id); // Deleta a tarefa com o ID especificado
+        taskRepository.deleteById(id);
     }
 }

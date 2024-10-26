@@ -1,43 +1,73 @@
+/* Das linhas 6 a 13, temos a Importação para ignorar propriedades desconhecidas durante a serialização. Importação das
+anotações JPA, Importação para gerar construtor com todos os parâmetros, Importação para permitir a construção da classe
+de forma fluente, Importação para gerar métodos getters, setters e outros automaticamente, Importação para gerar
+construtor sem parâmetros e a Importação para permitir que a classe seja serializável
+*/
 package com.uniasselvi.to_do_list_API.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties; // Importação para ignorar propriedades desconhecidas durante a serialização
-import jakarta.persistence.*; // Importação das anotações JPA
-import lombok.AllArgsConstructor; // Importação para gerar construtor com todos os parâmetros
-import lombok.Builder; // Importação para permitir a construção da classe de forma fluente
-import lombok.Data; // Importação para gerar métodos getters, setters e outros automaticamente
-import lombok.NoArgsConstructor; // Importação para gerar construtor sem parâmetros
 
-import java.io.Serializable; // Importação para permitir que a classe seja serializável
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
- * Classe que representa uma tarefa no sistema.
- * A classe implementa Serializable para permitir a conversão em byte-stream,
- * facilitando a transmissão e persistência de objetos.
+ * Das linhas 41 em diante, temos a Classe que representa uma tarefa no sistema.
+ * Implementa Serializable para facilitar transmissão e persistência de objetos.
+ * Utiliza Lombok para geração de construtores e métodos automáticos.
+ * Anotada como @Entity e @Table para mapeamento JPA.
+ * Inclui relacionamento muitos-para-um com a classe User.
  */
 @Builder
 @Data
-@NoArgsConstructor // Gera um construtor sem parâmetros
-@AllArgsConstructor // Gera um construtor com todos os parâmetros
-@JsonIgnoreProperties(ignoreUnknown = true) // Ignora propriedades desconhecidas durante a serialização/deserialização
-@Entity // Indica que a classe é uma entidade JPA
-@Table(name = "tasks") // Define o nome da tabela no banco de dados
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "tasks")
 public class Task implements Serializable {
 
-    @Id // Indica que este campo é a chave primária
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Gera o valor automaticamente (auto-incremento)
-    private Long id; // Identificador único da tarefa
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false) // Define que este campo não pode ser nulo
-    private String title; // Título da tarefa
+    @Column(nullable = false)
+    private String title;
 
-    @Column(columnDefinition = "TEXT") // Define o tipo do banco de dados como TEXT para permitir longas descrições
-    private String description; // Descrição detalhada da tarefa
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-    @Enumerated(EnumType.STRING) // Define que o valor do enum será armazenado como uma String no banco de dados
-    @Column(nullable = false) // Define que este campo não pode ser nulo
-    private TaskStatus status; // Status da tarefa (ex: TODO, DOING, DONE)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TaskStatus status;
 
-    @ManyToOne // Define um relacionamento muitos-para-um com a classe User
-    @JoinColumn(name = "user_id", nullable = false) // Define a coluna que será usada para o relacionamento e que não pode ser nula
-    private User user; // Usuário associado à tarefa
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
+
+
+
+
+
