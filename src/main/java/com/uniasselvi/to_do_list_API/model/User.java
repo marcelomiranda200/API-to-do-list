@@ -1,4 +1,4 @@
-package br.com.uniasselvi.to_do_list.model;
+package com.uniasselvi.to_do_list_API.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;

@@ -1,7 +1,6 @@
-package br.com.uniasselvi.to_do_list.model;
+package com.uniasselvi.to_do_list_API.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.uniasselvi.to_do_list_API.model.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +34,5 @@ public class Task implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private br.com.uniasselvi.to_do_list.model.User user;
+    private User user;
 }
