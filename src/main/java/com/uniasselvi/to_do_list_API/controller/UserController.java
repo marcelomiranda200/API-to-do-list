@@ -47,7 +47,7 @@ Métodos:
 - `updateUser`: Atualiza dados de um usuário existente por ID ou retorna 404.
 - `deleteUser`: Exclui um usuário por ID e retorna status 204 se concluído com sucesso.
 **/
-
+@CrossOrigin(origins = "http://127.0.0.1:5500") // Permite apenas essa origem
 @RestController
 @RequestMapping("/users")
 public class UserController {
