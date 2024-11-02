@@ -49,8 +49,7 @@ import java.util.Optional;
  - `createTask`: Cria uma nova tarefa e retorna com status 201.
  - `updateTask`: Atualiza dados de uma tarefa existente por ID ou retorna 404.
  - `deleteTask`: Exclui uma tarefa por ID e retorna status 204 se concluído com sucesso.
- **/
-@CrossOrigin(origins = "http://127.0.0.1:5500") // Permite apenas essa origem
+ **/@CrossOrigin(origins = "http://127.0.0.1:5500") // Permite apenas essa origem
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
